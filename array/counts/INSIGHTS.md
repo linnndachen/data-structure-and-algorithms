@@ -1,0 +1,1 @@
+Questions in the counts folder often concerning how many times something has appeared. Using the Counter method often comes in handly when handling these questions.
