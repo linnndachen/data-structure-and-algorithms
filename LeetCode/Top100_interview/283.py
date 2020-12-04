@@ -3,7 +3,7 @@ class Solution:
     """
     Do not return anything, modify nums in-place instead.
     """
-    def moveZeroes_long(self, nums: List[int]) -> None:
+    def moveZeroes_long(self, nums):
         """
         we assume the first zero is at index 0, if the first one is not zero,
         the list will not chnage after the first iteration. We move the 
