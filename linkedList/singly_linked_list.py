@@ -84,6 +84,45 @@ class SinglyLinkedList:
         self.head = None
 
 
+class CircularLinkedList(object):
+    def init(self):
+        self.head = None
+        self.tail = None
+        self.count = 0
+
+    def append(self, data):
+        node = Node(data)
+        if self.head:
+            self.head.next = node
+            self.head = node
+        else:
+            self.head = node
+            self.tail = Node
+
+        # this line makes it circular
+        self.head.next = self.tail
+        self.count += 1
+
+    def delete(self, data):
+        current = self.tail
+        prev = self.tail
+
+        # when this is the first node or when we reach
+        # the end of the list
+        while prev == current or prev != self.head:
+            if current.data == data:
+                if current == self.tail:
+                    self.tail = current.next
+                    # what makes circular linked list special
+                    self.head.next = self.tail
+                else:
+                    prev.next = current.next
+                    self.count -= 1
+        return
+        prev = current
+        current = current.next
+
+
 """
 Run to test
 """
