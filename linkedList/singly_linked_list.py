@@ -17,7 +17,7 @@ class SinglyLinkedList:
         self.size = 0
 
     # then we start to add elements in
-    def append(self, data):
+    def slow_append(self, data):
         # put the data in a node
         node = Node(data)
         if self.tail == None:
@@ -32,7 +32,7 @@ class SinglyLinkedList:
 
     # this is faster because we not only store the reference to
     # not only the first node but also the last node in line
-    def faster_append(self, data):
+    def append(self, data):
         node = Node(data)
         if self.head:
             self.head.next = node
@@ -83,6 +83,22 @@ class SinglyLinkedList:
         self.tail = None
         self.head = None
 
+    def __getitem__(self, index):
+        if index > self.size - 1:
+            raise Exception("Index out of range.")
+        current = self.tail
+        for _ in range(index):
+            current = current.next
+        return current.data
+
+    def __setitem__(self, index, value):
+        if index > self.size - 1:
+            raise Exception("Index out of range.")
+        current = self.tail
+        for n in range(index):
+            current = current.next
+        current.data = value
+
 
 class CircularLinkedList(object):
     def init(self):
@@ -118,9 +134,9 @@ class CircularLinkedList(object):
                 else:
                     prev.next = current.next
                     self.count -= 1
-        return
-        prev = current
-        current = current.next
+                    return
+            prev = current
+            current = current.next
 
 
 """
@@ -140,7 +156,7 @@ print("modify by index")
 words[4] = "Quux"
 print("Modified node by index: {}".format(words[4]))
 
-print("This list has {} elements.".format(words.count))
+print("This list has {} elements.".format(words.size))
 for word in words.iter():
     print("Got this data: {}".format(word))
 
@@ -151,18 +167,18 @@ if words.search('amiga'):
 
 print("Now we try to delete an item")
 words.delete('bim')
-print("List now has {} elements".format(words.count))
+print("List now has {} elements".format(words.size))
 for word in words.iter():
     print("data: {}".format(word))
 
 print("delete the first item in the list")
 words.delete('foo')
-print("size: {}".format(words.count))
+print("size: {}".format(words.size))
 for word in words.iter():
     print("data: {}".format(word))
 
 print("delete the last item in the list")
 words.delete('quux')
-print("size: {}".format(words.count))
+print("size: {}".format(words.size))
 for word in words.iter():
     print("data: {}".format(word))
