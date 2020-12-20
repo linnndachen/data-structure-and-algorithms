@@ -1,4 +1,7 @@
 class MinHeap:
+    """
+    parent node must be smaller or equal to its children
+    """
     def __init__(self):
         self.heap_list = [None]
         self.count = 0
@@ -20,7 +23,16 @@ class MinHeap:
 
     def heapify_up(self):
         idx = self.count
-        pass
+        swap_count = 0
+        while self.parent_index(idx) > 0:
+            if self.heap_list[self.parent_index(idx)] > self.heap_list[idx]:
+                swap_count += 1
+                tmp = self.heap_list[self.parent_index(idx)]
+                self.heap_list[self.parent_index(idx)] = self.heap_list[idx]
+                self.heap_list[idx] = tmp
+            idx = self.parent_index(idx)
+
+
 
     def get_smaller_child_idx(self, idx):
         if self.right_child_index(idx) > self.count:
