@@ -45,11 +45,15 @@ class adjacency_matrices:
     def create_matrix(self):
         adjacency_matrices = [[0 for x in range(self.rows)] for y in range(self.cols)]
         edges_list = []
-        
+
+        # we found all the vertexcies that have relationship between them
+        # then we store them in pair as 
+        # [(A, B), (A, C), (B, E), ...]
         for key in self.matrix_elements:
             for neighbor in self.graph[key]:
                 edges_list.append((key, neighbor))
 
+        # then we fill the grids that relationship with 1
         for edge in edges_list:
             index_of_first_vertex = self.matrix_elements.index(edge[0])
             index_of_second_vertex = self.matrix_elements.index(edge[1])
