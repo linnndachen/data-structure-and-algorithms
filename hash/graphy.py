@@ -35,3 +35,22 @@ class Graph:
                 vertices_to_visit = set(self.graph_dict[current_vertex].edges.keys())
                 start += [vertex for vertex in vertices_to_visit if vertex not in seen]
             return False
+
+class adjacency_matrices:
+    def __init__(self, data):
+        self.graph = data
+        self.matrix_elements = sorted(self.graph.keys())
+        self.cols = self.rows = len(self.matrix_elements)
+
+    def create_matrix(self):
+        adjacency_matrices = [[0 for x in range(self.rows)] for y in range(self.cols)]
+        edges_list = []
+        
+        for key in self.matrix_elements:
+            for neighbor in self.graph[key]:
+                edges_list.append((key, neighbor))
+
+        for edge in edges_list:
+            index_of_first_vertex = self.matrix_elements.index(edge[0])
+            index_of_second_vertex = self.matrix_elements.index(edge[1])
+            adjacency_matrices[index_of_first_vertex][index_of_second_vertex] = 1
